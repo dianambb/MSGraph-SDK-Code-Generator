@@ -60,8 +60,8 @@ var entityName = writer.GetPrefix() + entity.Name.ToUpperFirstChar() + (withRefe
     if(<#=entity.Name#>.oDataEtag != nil)
 	{
 	   headerDictionary = [[NSMutableDictionary alloc] init];
-	   [headerDictionary setValue:<#=entity.Name#>.oDataEtag forKwy:@"If-Match"];
-	   [headerDictionary setValue:@"return=representation" forKwy:@"Prefer"];
+	   [headerDictionary setValue:<#=entity.Name#>.oDataEtag forKey:@"If-Match"];
+	   [headerDictionary setValue:@"return=representation" forKey:@"Prefer"];
 	}
 
     NSData *body = [NSJSONSerialization dataWithJSONObject:[<#=entity.Name#> dictionaryFromItem] options:0 error:nil];
@@ -92,7 +92,7 @@ var entityName = writer.GetPrefix() + entity.Name.ToUpperFirstChar() + (withRefe
     if(<#=entity.Name#>.oDataEtag != nil)
 	{
 	   headerDictionary = [[NSMutableDictionary alloc] init];
-	   [headerDictionary setValue:<#=entity.Name#>.oDataEtag forKwy:@"If-Match"];
+	   [headerDictionary setValue:<#=entity.Name#>.oDataEtag forKey:@"If-Match"];
 	}
 
     return [self requestWithMethod:@"DELETE"
