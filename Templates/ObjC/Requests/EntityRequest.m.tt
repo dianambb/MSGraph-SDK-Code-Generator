@@ -55,6 +55,15 @@ var entityName = writer.GetPrefix() + entity.Name.ToUpperFirstChar() + (withRefe
 
 - (NSMutableURLRequest *)update:(<#=writer.GetPrefix() + entity.Name.ToUpperFirstChar()#> *)<#=entity.Name#>
 {
+    NSMutableDictionary *headerDictionary = nil;
+
+    if(<#=entity.Name#>.oDataEtag != nil)
+	{
+	   headerDictionary = [[NSMutableDictionary alloc] init];
+	   [headerDictionary setValue:<#=entity.Name#>.oDataEtag forKwy:@"If-Match"];
+	   [headerDictionary setValue:@"return=representation" forKwy:@"Prefer"];
+	}
+
     NSData *body = [NSJSONSerialization dataWithJSONObject:[<#=entity.Name#> dictionaryFromItem] options:0 error:nil];
     return [self requestWithMethod:@"PATCH"
                               body:body
@@ -78,9 +87,17 @@ var entityName = writer.GetPrefix() + entity.Name.ToUpperFirstChar() + (withRefe
 
 - (NSMutableURLRequest *)delete
 {
+    NSMutableDictionary *headerDictionary = nil;
+
+    if(<#=entity.Name#>.oDataEtag != nil)
+	{
+	   headerDictionary = [[NSMutableDictionary alloc] init];
+	   [headerDictionary setValue:<#=entity.Name#>.oDataEtag forKwy:@"If-Match"];
+	}
+
     return [self requestWithMethod:@"DELETE"
                               body:nil
-                           headers:nil];
+                           headers:headerDictionary];
 }
 
 - (<#=writer.GetStaticCodePrefix()#>URLSessionDataTask *)deleteWithCompletion:<#=writer.GetNetworkCompletionBlock(null, null)#>completionHandler
