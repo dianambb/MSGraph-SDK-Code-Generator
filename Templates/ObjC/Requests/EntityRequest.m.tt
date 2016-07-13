@@ -87,17 +87,9 @@ var entityName = writer.GetPrefix() + entity.Name.ToUpperFirstChar() + (withRefe
 
 - (NSMutableURLRequest *)delete
 {
-    NSMutableDictionary *headerDictionary = nil;
-
-    if(<#=entity.Name#>.oDataEtag != nil)
-	{
-	   headerDictionary = [[NSMutableDictionary alloc] init];
-	   [headerDictionary setValue:<#=entity.Name#>.oDataEtag forKey:@"If-Match"];
-	}
-
     return [self requestWithMethod:@"DELETE"
                               body:nil
-                           headers:headerDictionary];
+                           headers:nil];
 }
 
 - (<#=writer.GetStaticCodePrefix()#>URLSessionDataTask *)deleteWithCompletion:<#=writer.GetNetworkCompletionBlock(null, null)#>completionHandler
