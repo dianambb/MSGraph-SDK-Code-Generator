@@ -155,7 +155,7 @@ public string GetCollectionWithReferencesIndexRequestBuilder(OdcmProperty odcmPr
     var stringBuilder = new StringBuilder();
 
     var propTypeName = string.Concat(this.GetEntityNameString(odcmProperty.Class), this.GetPropertyTypeName(odcmProperty));
-    var entityRequestBuilder = this.GetPropertyTypeWithReferenceRequestBuilderName(odcmProperty);
+    var entityRequestBuilder = this.GetRequestBuilderString(this.GetPropertyTypeName(odcmProperty));
 
     stringBuilder.Append("/// <summary>");
     stringBuilder.Append(Environment.NewLine);

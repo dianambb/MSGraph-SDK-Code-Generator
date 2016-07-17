@@ -133,6 +133,9 @@ namespace Microsoft.Graph.ODataTemplateWriter.CodeHelpers.CSharp
                     return "bool";
                 case "date":
                     return "Date";
+                case "duration":
+                case "timeofday":
+                    return "TimeSpan";
                 case "json":
                     return "Newtonsoft.Json.Linq.JToken";
                 default:
